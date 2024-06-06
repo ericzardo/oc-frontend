@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import CloseModal from "@components/CloseModal";
+import CloseModal from "@components/common/CloseModal";
 
 ErrorModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,

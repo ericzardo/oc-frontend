@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import ChatBox from "@components/ChatBox";
-import JoinChatAlert from "@components/JoinChatModal";
-import ErrorModal from "@components/ErrorModal";
+import JoinChatAlert from "@components/modals/JoinChatModal";
+// import ErrorModal from "@components/modals/ErrorModal";
 
 function App () {
   const [ isJoiningChat, setJoiningChat ] = useState(false);

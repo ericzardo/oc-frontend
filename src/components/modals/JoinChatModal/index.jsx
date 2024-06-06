@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
 
-import Overlay from "@components/Overlay";
+import Overlay from "@components/common/Overlay";
+import CloseModal from "@components/common/CloseModal";
+
 import UserInputBox from "@components/UserInputBox";
-import CloseModal from "@components/CloseModal";
+
 
 const submit = () => {
   console.log("submit!");
