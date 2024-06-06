@@ -1,3 +1,12 @@
+import PropTypes from "prop-types";
+
+UserInputBox.propTypes = {
+  placeholder: PropTypes.string,
+  buttonText: PropTypes.string.isRequired,
+
+  onSubmit: PropTypes.func.isRequired,
+};
+
 function UserInputBox ({ placeholder, buttonText, onSubmit }) {
   return (
     <span
@@ -14,7 +23,7 @@ function UserInputBox ({ placeholder, buttonText, onSubmit }) {
         onSubmit={onSubmit}
         type="submit"
         title={buttonText}
-        className="bg-blue-500 text-zinc-200 text-lg py-2.5 px-4 flex items-center justify-start text-left cursor-pointer select-none transition-colors duration-300 ease-out hover:bg-blue-800"
+        className="bg-blue-500 text-zinc-200 text-lg py-2.5 px-4 flex items-center justify-start text-left cursor-pointer select-none transition-colors duration-300 ease-out hover:bg-blue-700"
       >
         {buttonText}
       </button>

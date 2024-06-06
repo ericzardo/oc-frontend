@@ -1,3 +1,9 @@
+import PropTypes from "prop-types";
+
+ChatBox.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
+
 function ChatBox ({ onClick }) {
   return (
     <span onClick={onClick} className="flex flex-col gap-5 p-5 w-64 h-28 shadow-md border-t-2 border-blue-500 bg-zinc-200 rounded-lg cursor-pointer transition-transform hover:scale-110 ease-linear duration-100">
