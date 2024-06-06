@@ -15,7 +15,10 @@ function UserInputBox ({ placeholder, buttonText, onSubmit }) {
         type="submit"
         title={buttonText}
         className="bg-blue-500 text-zinc-200 text-lg py-2.5 px-4 flex items-center justify-start text-left cursor-pointer select-none transition-colors duration-300 ease-out hover:bg-blue-800"
-      />
+      >
+        {buttonText}
+      </button>
+      
     </span>
   );
 }

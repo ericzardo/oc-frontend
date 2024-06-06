@@ -16,10 +16,11 @@ function JoinChatAlert ({ onClose }) {
       <p className="text-lg text-zinc-800/80 leading-[1.2]">Please enter your username to continue to the online chat</p>
 
       <UserInputBox
-        placeholder="Enter your username here!"
-        buttonText="Continue"
+        placeholder={"Enter your username here!"}
+        buttonText={"Next >"}
         onSubmit={submit}
       />
+
     </div>
   </>;
 }
