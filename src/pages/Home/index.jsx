@@ -6,7 +6,7 @@ import JoinChatAlert from "@components/modals/JoinChatModal";
 
 import ThemeDropdown from "@components/ThemeDropdown";
 
-function App () {
+function Home() {
   const [ isJoiningChat, setJoiningChat ] = useState(false);
 
   // ErrorModal State: 
@@ -56,4 +56,4 @@ function App () {
   );
 }
 
-export default App;
+export default Home;
