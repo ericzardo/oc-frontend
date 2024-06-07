@@ -11,7 +11,7 @@ const submit = () => {
 };
 
 JoinChatModal.propTypes = {
-  isOpen: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
