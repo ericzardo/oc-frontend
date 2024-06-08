@@ -6,7 +6,6 @@ ChatBox.propTypes = {
   chatName: PropTypes.string.isRequired,
   onlineUsers: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
 function ChatBox ({ chatName, onlineUsers, createdAt }) {
