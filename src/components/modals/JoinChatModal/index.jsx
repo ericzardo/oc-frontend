@@ -37,7 +37,7 @@ function JoinChatModal ({ onSubmit }) {
 
         <UserInputBox
           placeholder={"Enter your username here!"}
-          buttonText={"Next"}
+          buttonContent={"Next"}
           onSubmit={onSubmit}
         />
       </div>
