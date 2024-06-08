@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 
 import { useSearchParams } from "react-router-dom";
 
-ChatRadio.propTypes = {
+ChatCard.propTypes = {
   chatName: PropTypes.string.isRequired,
   onlineUsers: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
 };
 
-function ChatRadio ({ chatName, onlineUsers, createdAt }) {
+function ChatCard ({ chatName, onlineUsers, createdAt }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleClick = () => {
@@ -32,4 +32,4 @@ function ChatRadio ({ chatName, onlineUsers, createdAt }) {
   );
 }
 
-export default ChatRadio;
+export default ChatCard;

@@ -1,4 +1,4 @@
-import ChatRadio from "@components/ChatRadio";
+import ChatCard from "@components/ChatCard";
 import JoinChatAlert from "@components/modals/JoinChatModal";
 // import ErrorModal from "@components/modals/ErrorModal";
 
@@ -17,17 +17,17 @@ function Home () {
       /> */}
 
       <ThemeDropdown themeName={"First and Testing Theme"}>
-        <ChatRadio
+        <ChatCard
           chatName="Top Trending Chat"
           onlineUsers="239"
           createdAt="08/06/2024"
         />
-        <ChatRadio
+        <ChatCard
           chatName="Where is that?"
           onlineUsers="98"
           createdAt="08/06/2024"
         />
-        <ChatRadio
+        <ChatCard
           chatName="MEEEE Test"
           onlineUsers="23"
           createdAt="08/06/2024"
