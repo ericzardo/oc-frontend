@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import Home from "@pages/Home";
-import Chat from "@pages/Chat";
+import Home from "src/pages/Home";
+import Chat from "src/pages/Chat";
 
 const router = createBrowserRouter([
   {
@@ -10,8 +10,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/c/*",
-    element: <Chat />
-  }
+    element: <Chat />,
+  },
 ]);
 
 export default router;
