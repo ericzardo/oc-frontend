@@ -42,7 +42,7 @@ function ThemeDropdown ({ themeName, children }) {
       </div>
 
       {isOpen && (
-        <div className="w-full flex justify-between items-center gap-4 flex-wrap p-6">
+        <div className="w-full flex justify-between items-center max-sm:justify-center gap-4 flex-wrap p-6">
           {children}
         </div>
       )}
