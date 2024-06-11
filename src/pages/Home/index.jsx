@@ -4,9 +4,15 @@ import JoinChatAlert from "@components/modals/JoinChatModal";
 
 import ThemeDropdown from "@components/ThemeDropdown";
 
+import data from "./data";
+
+import getChats from "src/services/getChats";
+
 function Home () {
   // ErrorModal State:
   // const [ isError, setError ] = useState(false);
+
+  const chats = getChats;
 
   return (
     <div className="w-auto mx-auto max-w-screen-lg bg-zinc-300 flex flex-1 flex-wrap justify-between rounded-t-2xl shadow-md overflow-hidden">
@@ -16,23 +22,18 @@ function Home () {
         errorMessage={"Testing error component, is it working?"}
       /> */}
 
-      <ThemeDropdown themeName={"First and Testing Theme"}>
-        <ChatCard
-          chatName="Top Trending Chat"
-          onlineUsers="239"
-          createdAt="08/06/2024"
-        />
-        <ChatCard
-          chatName="Where is that?"
-          onlineUsers="98"
-          createdAt="08/06/2024"
-        />
-        <ChatCard
-          chatName="MEEEE Test"
-          onlineUsers="23"
-          createdAt="08/06/2024"
-        />
-      </ThemeDropdown>
+      {data.map((theme) => (
+        <ThemeDropdown key={theme.name} themeName={theme.name}>
+          {theme.chats.map((chat) => (
+            <ChatCard
+              key={chat.name}
+              chatName={chat.name}
+              onlineUsers={chat.onlineUsers.toString()}
+              createdAt={chat.createdAt}
+            />
+          ))}
+        </ThemeDropdown>
+      ))}
 
       <JoinChatAlert onSubmit={() => console.log("submit")} />
     </div>
