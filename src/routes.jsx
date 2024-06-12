@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import Home from "src/pages/Home";
-import Chat from "src/pages/Chat";
+import Home from "@pages/Home";
+import Chat from "@pages/Chat";
+import AdminHome from "@pages/admin/Home";
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: "/c/*",
     element: <Chat />,
+  },
+  {
+    path: "/admin/*",
+    element: <AdminHome />,
   },
 ]);
 
