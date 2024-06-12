@@ -34,7 +34,6 @@ const DeleteChat = () => {
     setSelectedTheme(e.target.value);
   };
 
-  console.log(selectedTheme);
   const filteredChats = selectedTheme
     ? data.find((theme) => theme.name === selectedTheme)?.chats || []
     : [];
@@ -45,7 +44,7 @@ const DeleteChat = () => {
         <DropdownInput
           onChange={handleThemeChange}
           placeholder="Choose here!"
-          children={data.map((theme) => (
+          {...data.map((theme) => (
             <option key={theme.name} value={theme.name}>
               {theme.name}
             </option>

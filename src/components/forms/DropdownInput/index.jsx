@@ -5,6 +5,8 @@ DropdownInput.propTypes = {
   placeholder: PropTypes.string,
   custom: PropTypes.string,
 
+  children: PropTypes.node.isRequired,
+
   onChange: PropTypes.func,
 };
 

@@ -6,11 +6,6 @@ import SectionWithActions from "@components/SectionWithActions";
 import CreateChat from "@components/actions/CreateChat";
 import DeleteChat from "@components/actions/DeleteChat";
 
-const themes = [
-  { id: 1, name: "Space", createdAt: null, updatedAt: null },
-  { id: 2, name: "Dev and Code", createdAt: null, updatedAt: null },
-];
-
 function AdminHome () {
   const [action, setAction] = useState("");
 
