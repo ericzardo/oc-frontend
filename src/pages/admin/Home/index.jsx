@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Plus, X } from "react-feather";
 
 import SectionWithActions from "@components/SectionWithActions";
@@ -8,25 +9,31 @@ import DeleteChat from "@components/actions/DeleteChat";
 
 function AdminHome () {
   const [action, setAction] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const renderActionComponent = (action) => {
-    switch (action) {
-    case "plus":
+  const params = new URLSearchParams(searchParams);
+
+  const renderActionComponent = () => {
+    switch (params.get("manage-chat")) {
+    case "add":
       return <CreateChat />;
 
     case "delete":
       return <DeleteChat />;
 
     default:
-      setAction("");
       break;
     }
   };
 
-  const handleAction = (actionName) => {
-    if (action === actionName) return setAction("");
+  const handleAction = (action) => {
+    if (params.get("manage-chat") == action) {
+      params.delete("manage-chat");
+    } else {
+      params.set("manage-chat", action);
+    }
 
-    setAction(actionName);
+    setSearchParams(params);
   };
 
   return (
@@ -34,7 +41,7 @@ function AdminHome () {
       <h1 className="text-zinc-700 font-bold text-2xl my-6">Admin Dashboard</h1>
       <SectionWithActions title="Manage Chats">
         <button
-          onClick={() => handleAction("plus")}
+          onClick={() => handleAction("add")}
           className="bg-blue-500 text-zinc-50 w-8 h-8 rounded-full flex justify-center items-center p-0.5 transition-colors duration-300 ease-out hover:bg-blue-700"
         >
           <Plus />
@@ -47,7 +54,7 @@ function AdminHome () {
         </button>
       </SectionWithActions>
 
-      {action && renderActionComponent(action)}
+      {renderActionComponent(action)}
     </div>
   );
 }
