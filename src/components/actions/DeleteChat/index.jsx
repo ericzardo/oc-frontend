@@ -39,17 +39,20 @@ const DeleteChat = () => {
     : [];
 
   return (
-    <Interface title="Delete chat" submitButton={true} cancelButton={true}>
+    <Interface
+      title="Delete chat"
+      submitButton={true}
+      cancelButton={true}
+      interfaceName="del-chat"
+    >
       <LabeledInput id="themes" labelText="Select a Theme: ">
-        <DropdownInput
-          onChange={handleThemeChange}
-          placeholder="Choose here!"
+        <DropdownInput onChange={handleThemeChange} placeholder="Choose here!">
           {...data.map((theme) => (
             <option key={theme.name} value={theme.name}>
               {theme.name}
             </option>
           ))}
-        ></DropdownInput>
+        </DropdownInput>
       </LabeledInput>
 
       <LabeledInput id="chats" labelText="Select the Chat ">

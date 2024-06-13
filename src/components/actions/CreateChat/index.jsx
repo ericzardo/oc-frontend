@@ -1,3 +1,5 @@
+import { useSearchParams } from "react-router-dom";
+
 import Interface from "@components/actions/Interface";
 import LabeledInput from "@components/forms/LabeledInput";
 import DropdownInput from "@components/forms/DropdownInput";
@@ -8,16 +10,34 @@ const themes = [
 ];
 
 const CreateChat = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+
+  const onChangeDropdown = () => {
+    params.delete("custom");
+
+    setSearchParams(params);
+  };
+
   return (
     <Interface
       title={"Create new Chat"}
       submitButton={true}
       cancelButton={true}
+      interfaceName="add-chat"
     >
       <LabeledInput id="themes" labelText="Select a Theme: ">
-        <DropdownInput placeholder="Choose here!" custom="Custom Theme">
+        <DropdownInput
+          placeholder="Choose here!"
+          custom="Custom Theme"
+          id="themes"
+        >
           {themes.map((theme) => (
-            <option key={theme.name} value={theme.name}>
+            <option
+              onChange={onChangeDropdown}
+              key={theme.name}
+              value={theme.name}
+            >
               {theme.name}
             </option>
           ))}
