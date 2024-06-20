@@ -8,7 +8,7 @@ import useFetchChats from "@hooks/api/useFetchChats";
 import Dropdown from "@components/Dropdown";
 import InputModal from "@components/modals/InputModal";
 import CloseModal from "@components/common/CloseModal";
-import UserInput from "@components/UserInput";
+import UserInput from "@components/forms/UserInput";
 import Card from "@components/Card";
 
 import { ArrowDown, ArrowRight } from "react-feather";

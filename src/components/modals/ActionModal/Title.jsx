@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
-InterfaceTitle.propTypes = {
+ActionTitle.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-function InterfaceTitle ({ title }) {
+function ActionTitle ({ title }) {
   return (
     <h1 className="font-semibold text-4xl text-blue-500 capitalize mb-5">
       {title}
@@ -12,4 +12,4 @@ function InterfaceTitle ({ title }) {
   );
 }
 
-export default InterfaceTitle;
+export default ActionTitle;

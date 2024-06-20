@@ -1,43 +1,43 @@
-import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
 
-import Interface from "@components/actions/Interface";
+import ActionModal from "@components/modals/ActionModal";
 import LabeledInput from "@components/forms/LabeledInput";
 import DropdownInput from "@components/forms/DropdownInput";
 
 import useFetchThemes from "@hooks/api/useFetchThemes";
 
-const CreateChat = () => {
+CreateChat.propTypes = {
+  actionParam: PropTypes.string.isRequired,
+};
+
+function CreateChat ({ actionParam }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const params = new URLSearchParams(searchParams);
 
-  const { data: themes, isLoading, error } = useFetchThemes();
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    if (error) {
-      setIsError(true);
-    }
-  }, [error]);
+  const { data: themes, isLoading } = useFetchThemes();
 
   const { register, handleSubmit } = useForm();
+
+  const deleteCustomParam = (key) => {
+    params.delete(key);
+
+    setSearchParams(params);
+  };
 
   const handleCreateChat = (data) => {
     console.log(data);
   };
 
-  const onChangeDropdown = () => {
-    params.delete("custom");
-
-    setSearchParams(params);
-  };
+  const onChangeDropdown = () => deleteCustomParam("custom");
+  const closeModal = () => deleteCustomParam(actionParam);
 
   const handleCustomTheme = () => {
-    const key = "custom";
+    const customKey = "custom";
 
-    if (params.get(key)) params.delete(key);
-    params.set(key, "themes");
+    if (params.get(customKey)) params.delete(customKey);
+    params.set(customKey, "themes");
 
     setSearchParams(params);
   };
@@ -45,9 +45,9 @@ const CreateChat = () => {
   const isCustomThemeSelected = params.get("custom") === "themes";
 
   return (
-    <Interface.Root>
-      <Interface.Title title="Add new Chat" />
-      <Interface.Content onSubmit={handleCreateChat}>
+    <ActionModal.Root onClose={closeModal}>
+      <ActionModal.Title title="Add new Chat" />
+      <ActionModal.Content onSubmit={handleCreateChat}>
         <LabeledInput id="themes" labelText="Select a Theme: ">
           <DropdownInput.Selection
             id="themes"
@@ -86,7 +86,7 @@ const CreateChat = () => {
             type="text"
             placeholder="Example: Clean Code"
             id="chat-name"
-            {...register("chatName")}
+            {...register("chat-name")}
             className="bg-zinc-100 text-zinc-800 p-2.5 rounded-md"
           />
         </LabeledInput>
@@ -98,14 +98,17 @@ const CreateChat = () => {
           <textarea
             id="chat-desc"
             placeholder="..."
-            {...register("chatDescription")}
+            {...register("chat-description")}
             className="bg-zinc-100 text-zinc-800 p-2.5 rounded-md"
           ></textarea>
         </LabeledInput>
-      </Interface.Content>
-      <Interface.Footer withCancel withSubmit />
-    </Interface.Root>
+      </ActionModal.Content>
+      <ActionModal.Footer
+        onCancel={closeModal}
+        onSubmit={() => console.log("submit create chat forms")}
+      />
+    </ActionModal.Root>
   );
-};
+}
 
 export default CreateChat;

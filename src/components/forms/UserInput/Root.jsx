@@ -1,5 +1,6 @@
-import { tv } from "tailwind-variants";
+import { useState } from "react";
 import PropTypes from "prop-types";
+import { tv } from "tailwind-variants";
 
 UserInputRoot.propTypes = {
   children: PropTypes.node.isRequired,
@@ -21,7 +22,22 @@ const userInputRoot = tv({
 });
 
 function UserInputRoot ({ children, size }) {
-  return <span className={userInputRoot({ size })}>{children}</span>;
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(false);
+
+  return (
+    <span
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      className={`${userInputRoot({ size })} ${
+        isFocused ? "border-2 border-e-0 border-blue-500" : ""
+      }`}
+    >
+      {children}
+    </span>
+  );
 }
 
 export default UserInputRoot;

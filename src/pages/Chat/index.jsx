@@ -1,6 +1,6 @@
 import MessagesContainer from "@components/ChatContainer";
 import ChatMessage from "@components/ChatMessage";
-import UserInput from "@components/UserInput";
+import UserInput from "@components/forms/UserInput";
 
 import { CornerDownRight } from "react-feather";
 

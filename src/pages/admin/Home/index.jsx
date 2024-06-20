@@ -27,9 +27,9 @@ function AdminHome () {
 
     switch (action) {
     case "add":
-      return <CreateChat />;
+      return <CreateChat actionParam={key} />;
     case "delete":
-      return <DeleteChat />;
+      return <DeleteChat actionParam={key} />;
     default:
       return;
     }
@@ -40,7 +40,7 @@ function AdminHome () {
   return (
     <div className="w-auto mx-auto max-w-screen-lg h-full flex flex-col gap-2 py-5 px-8 bg-zinc-300 rounded-2xl shadow-md overflow-hidden">
       <h1 className="text-zinc-700 font-bold text-2xl my-6">Admin Dashboard</h1>
-      <ActionHeader.Root title="Manage Chats">
+      <ActionHeader.Root title="Manage Chats" actionParam="manage-chats">
         <ActionHeader.Actions>
           <ActionHeader.Action
             buttonContent={<Plus />}
@@ -49,19 +49,6 @@ function AdminHome () {
           <ActionHeader.Action
             buttonContent={<X />}
             onClick={(key) => handleAction(key, "delete")}
-          />
-        </ActionHeader.Actions>
-      </ActionHeader.Root>
-
-      <ActionHeader.Root title="Admin Test">
-        <ActionHeader.Actions>
-          <ActionHeader.Action
-            buttonContent={<Plus />}
-            onClick={(key) => handleAction(key, "gaming")}
-          />
-          <ActionHeader.Action
-            buttonContent={<X />}
-            onClick={(key) => handleAction(key, "meta")}
           />
         </ActionHeader.Actions>
       </ActionHeader.Root>
