@@ -1,15 +1,15 @@
 import api from "@lib/axios";
 
-const fetchChats = async () => {
+const fetchThemes = async () => {
   let res;
-  await api.get("/get-chats")
+  await api.get("/get-themes")
     .then(response => {
-      if (!response.data || !response.data.chats) {
+      if (!response.data || !response.data.themes) {
         const message = "Error sending chats informations. Please try again.";
         throw new Error(message);
       }
 
-      res = response.data.chats || [];
+      res = response.data.themes || [];
     })
     .catch(err => {
 
@@ -23,10 +23,9 @@ const fetchChats = async () => {
       throw new Error(message);
     });
 
-  if (!res) throw new Error("Server did not respond.Please try later");
+  if (!res) throw new Error("Server did not respond. Please try later");
 
   return res;
 };
 
-
-export default fetchChats;
+export default fetchThemes;

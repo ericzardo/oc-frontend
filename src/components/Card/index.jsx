@@ -1,13 +1,11 @@
 import Root from "./Root";
 import Title from "./Title";
-import Content from "./Content";
 import Footer from "./Footer";
 
-const Interface = {
+const Card = {
   Root,
   Title,
-  Content,
   Footer,
 };
 
-export default Interface;
+export default Card;

@@ -1,15 +1,16 @@
 import api from "@lib/axios";
 
-const fetchChats = async () => {
+const createChat = async (data) => {
   let res;
-  await api.get("/get-chats")
+  await api.post("/admin/create-chat", data)
     .then(response => {
-      if (!response.data || !response.data.chats) {
-        const message = "Error sending chats informations. Please try again.";
+      if (!response.data) {
+        const message = "Error creating new chats. Please try again.";
         throw new Error(message);
       }
 
-      res = response.data.chats || [];
+      return response.data;
+
     })
     .catch(err => {
 
@@ -28,5 +29,4 @@ const fetchChats = async () => {
   return res;
 };
 
-
-export default fetchChats;
+export default createChat;

@@ -2,59 +2,71 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Plus, X } from "react-feather";
 
-import SectionWithActions from "@components/SectionWithActions";
+import ActionHeader from "@components/ActionHeader";
 
 import CreateChat from "@components/actions/CreateChat";
 import DeleteChat from "@components/actions/DeleteChat";
 
 function AdminHome () {
-  const [action, setAction] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const params = new URLSearchParams(searchParams);
+  const handleAction = (key, action) => {
+    const params = new URLSearchParams(searchParams);
 
-  const renderActionComponent = () => {
-    switch (params.get("manage-chat")) {
-    case "add":
-      return <CreateChat />;
-
-    case "delete":
-      return <DeleteChat />;
-
-    default:
-      break;
-    }
-  };
-
-  const handleAction = (action) => {
-    if (params.get("manage-chat") == action) {
-      params.delete("manage-chat");
+    if (params.get(key) === action) {
+      params.delete(key);
     } else {
-      params.set("manage-chat", action);
+      params.set(key, action);
     }
 
     setSearchParams(params);
   };
 
-  return (
-    <div className="w-auto mx-auto max-w-screen-lg h-full py-5 px-8 bg-zinc-300 rounded-2xl shadow-md overflow-hidden">
-      <h1 className="text-zinc-700 font-bold text-2xl my-6">Admin Dashboard</h1>
-      <SectionWithActions title="Manage Chats">
-        <button
-          onClick={() => handleAction("add")}
-          className="bg-blue-500 text-zinc-50 w-8 h-8 rounded-full flex justify-center items-center p-0.5 transition-colors duration-300 ease-out hover:bg-blue-700"
-        >
-          <Plus />
-        </button>
-        <button
-          onClick={() => handleAction("delete")}
-          className="bg-blue-500 text-zinc-50 w-8 h-8 rounded-full flex justify-center items-center p-0.5 transition-colors duration-300 ease-out hover:bg-blue-700"
-        >
-          <X />
-        </button>
-      </SectionWithActions>
+  const renderActionComponent = (key) => {
+    const action = searchParams.get(key);
 
-      {renderActionComponent(action)}
+    switch (action) {
+    case "add":
+      return <CreateChat />;
+    case "delete":
+      return <DeleteChat />;
+    default:
+      return;
+    }
+  };
+
+  const actionKey = "manage-chats";
+
+  return (
+    <div className="w-auto mx-auto max-w-screen-lg h-full flex flex-col gap-2 py-5 px-8 bg-zinc-300 rounded-2xl shadow-md overflow-hidden">
+      <h1 className="text-zinc-700 font-bold text-2xl my-6">Admin Dashboard</h1>
+      <ActionHeader.Root title="Manage Chats">
+        <ActionHeader.Actions>
+          <ActionHeader.Action
+            buttonContent={<Plus />}
+            onClick={(key) => handleAction(key, "add")}
+          />
+          <ActionHeader.Action
+            buttonContent={<X />}
+            onClick={(key) => handleAction(key, "delete")}
+          />
+        </ActionHeader.Actions>
+      </ActionHeader.Root>
+
+      <ActionHeader.Root title="Admin Test">
+        <ActionHeader.Actions>
+          <ActionHeader.Action
+            buttonContent={<Plus />}
+            onClick={(key) => handleAction(key, "gaming")}
+          />
+          <ActionHeader.Action
+            buttonContent={<X />}
+            onClick={(key) => handleAction(key, "meta")}
+          />
+        </ActionHeader.Actions>
+      </ActionHeader.Root>
+
+      {renderActionComponent(actionKey)}
     </div>
   );
 }
