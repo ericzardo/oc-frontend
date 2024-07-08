@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
 
 import ActionModal from "@components/modals/ActionModal";
@@ -18,7 +18,7 @@ function CreateChat ({ actionParam }) {
 
   const { data: themes, isLoading } = useFetchThemes();
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control } = useForm();
 
   const deleteCustomParam = (key) => {
     params.delete(key);
@@ -49,33 +49,42 @@ function CreateChat ({ actionParam }) {
       <ActionModal.Title title="Add new Chat" />
       <ActionModal.Content onSubmit={handleCreateChat}>
         <LabeledInput id="themes" labelText="Select a Theme: ">
-          <DropdownInput.Selection
-            id="themes"
-            defaultValue={isCustomThemeSelected ? "custom" : "DEFAULT"}
-            required
-          >
-            <DropdownInput.Placeholder
-              placeholder="Choose here!"
-              disabled
-              hidden
-            />
-            {themes &&
-              themes.map((theme) => (
-                <option
-                  key={theme.name}
-                  value={theme.name}
-                  onClick={onChangeDropdown}
-                  {...register("theme-name")}
-                >
-                  {theme.name}
-                </option>
-              ))}
-            <DropdownInput.CustomOption
-              content="Custom Theme"
-              onClick={handleCustomTheme}
-              value="custom"
-            />
-          </DropdownInput.Selection>
+          <Controller
+            control={control}
+            name="theme-name"
+            render={({ field: { onChange, onBlur, value, ref } }) => (
+              <DropdownInput.Selection
+                id="themes"
+                defaultValue={isCustomThemeSelected ? "custom" : "DEFAULT"}
+                required
+              >
+                <DropdownInput.Placeholder
+                  placeholder="Choose here!"
+                  disabled
+                  hidden
+                />
+                {themes &&
+                  themes.map((theme) => (
+                    <option
+                      key={theme.name}
+                      value={theme.name}
+                      onClick={onChangeDropdown}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      selected={value}
+                    >
+                      {theme.name}
+                    </option>
+                  ))}
+                <DropdownInput.CustomOption
+                  content="Custom Theme"
+                  onClick={handleCustomTheme}
+                  value="custom"
+                />
+              </DropdownInput.Selection>
+            )}
+          />
+
           {isCustomThemeSelected && (
             <DropdownInput.CustomInput placeholder="New Theme" />
           )}
@@ -105,7 +114,7 @@ function CreateChat ({ actionParam }) {
       </ActionModal.Content>
       <ActionModal.Footer
         onCancel={closeModal}
-        onSubmit={() => console.log("submit create chat forms")}
+        onSubmit={handleSubmit(handleCreateChat)}
       />
     </ActionModal.Root>
   );

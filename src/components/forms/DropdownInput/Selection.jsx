@@ -8,12 +8,7 @@ DropdownSelection.propTypes = {
   defaultValue: PropTypes.string,
 };
 
-function DropdownSelection ({
-  children,
-  id,
-  required,
-  defaultValue = "DEFAULT",
-}) {
+function DropdownSelection ({ children, id, required, defaultValue }) {
   return (
     <select
       className="bg-zinc-100 text-zinc-800 p-2.5 rounded-md"
